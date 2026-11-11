@@ -68,11 +68,11 @@ const PROYECTOS = [
   { artista: "Grind", titulo: "Goat", anio: "", visitas: "5,1M", video: "https://youtu.be/GoN7N9FnH1c", portada: "", loop: "" },
   { artista: "Sofia Gabanna & Hard GZ", titulo: "Vivimos Deprisa", anio: "", visitas: "4,4M", video: "https://youtu.be/-PkNgMNnr2I", portada: "", loop: "" },
   { artista: "Miranda & Nadal015", titulo: "Demons", anio: "", visitas: "4,4M", video: "https://youtu.be/Yzz6zoiN8NM", portada: "", loop: "" },
-  { artista: "Blake", titulo: "Muy Fan", anio: "", visitas: "3,9M", video: "https://youtu.be/6lRDwuvsdKU", portada: "", loop: "" },
+  { artista: "Arce ft. Al Safir", titulo: "Nékora", anio: "", visitas: "878K", video: "https://youtu.be/Px05StgxA5I", portada: "", loop: "" },
   { artista: "Miranda", titulo: "Destello", anio: "", visitas: "3,7M", video: "https://youtu.be/j2-u328M9CA", portada: "", loop: "" },
   { artista: "Hard GZ & Denom ft. Lia Kali", titulo: "Ayer", anio: "", visitas: "2,7M", video: "https://youtu.be/E_czYtKq8PU", portada: "", loop: "" },
   { artista: "Arce ft. Nadal015", titulo: "Kazike", anio: "", visitas: "2,3M", video: "https://youtu.be/b9Bo321g2n4", portada: "", loop: "" },
-  { artista: "Swit Eme & Nikone", titulo: "Hasta el Final", anio: "", visitas: "2M", video: "https://youtu.be/oEAZpMq-ukI", portada: "", loop: "" },
+  { artista: "Nadal015 & Fernandocosta", titulo: "Soy un C4brón", anio: "", visitas: "920K", video: "https://youtu.be/xIzHxz_NiRo", portada: "", loop: "" },
   { artista: "Fyahbwoy & Nadal015", titulo: "Perros", anio: "", visitas: "1,5M", video: "https://youtu.be/e2nnLKiC3ag", portada: "", loop: "" },
 ];
 
