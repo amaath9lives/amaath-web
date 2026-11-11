@@ -25,8 +25,7 @@
       f_date: "Fecha aproximada", f_date_ph: "Ej. finales de enero",
       f_idea: "Idea, canción y referencias", f_idea_ph: "Enlace a la canción, la idea, referencias visuales…",
       f_send: "Enviar brief", close: "Cerrar",
-      intro_enter: "Entrar", intro_hint: "Tráiler · con sonido", intro_skip: "Entrar sin sonido",
-      watch_sound: "Ver tráiler con sonido", mute: "Silenciar", unmute: "Activar sonido", exit: "Salir",
+      trailer_title: "Tráiler", sound_on: "Activar sonido", sound_off: "Silenciar", fullscreen: "Pantalla completa",
       empty: "Hueco para videoclip", empty_t: "Título", empty_a: "Artista", watch: "▶ Ver vídeo", all: "Todos",
       err_fields: "Revisa los campos marcados", sending: "Enviando…", ok: "Recibido. Te escribo en 24–48 h.", err_send: "No se pudo enviar. Escríbeme a",
     },
@@ -44,8 +43,7 @@
       f_date: "Approx. date", f_date_ph: "E.g. late January",
       f_idea: "Idea, track and references", f_idea_ph: "Link to the track, the idea, visual references…",
       f_send: "Send brief", close: "Close",
-      intro_enter: "Enter", intro_hint: "Trailer · sound on", intro_skip: "Enter without sound",
-      watch_sound: "Watch trailer with sound", mute: "Mute", unmute: "Unmute", exit: "Exit",
+      trailer_title: "Trailer", sound_on: "Sound on", sound_off: "Mute", fullscreen: "Fullscreen",
       empty: "Music video slot", empty_t: "Title", empty_a: "Artist", watch: "▶ Watch", all: "All",
       err_fields: "Check the highlighted fields", sending: "Sending…", ok: "Received. I'll get back to you within 24–48 h.", err_send: "Couldn't send it. Email me at",
     },
@@ -78,57 +76,51 @@
   if (P.nombre) $("#heroName").textContent = P.nombre;
   if (P.nombreReal) $("#realName").textContent = P.nombreReal;
   if (P.usuario) { const h = $("#handle"); h.textContent = "@" + P.usuario; h.href = "https://instagram.com/" + P.usuario; }
-  if (P.fotoPortada && P.fotoPortada !== "img/trailer-poster.webp") {
+  if (P.fotoPortada && P.fotoPortada !== "img/portada.webp") {
     const im = $("#heroImg"); im.removeAttribute("srcset"); im.src = P.fotoPortada;
   }
-  // ---------- Vídeo de portada ----------
-  const hero = $("#top"), nav = $("#nav");
-  let hv = null;
-  if (!P.videoPortada) { const i = $("#intro"); if (i) i.remove(); }
-  if (P.videoPortada) {
+  // ---------- Tráiler (debajo de la portada) ----------
+  const nav = $("#nav");
+  const TR = typeof TRAILER !== "undefined" ? TRAILER : {};
+  const trSec = $("#trailer"), tv = $("#trVideo");
+  if (TR.video) {
+    trSec.hidden = false;
     const small = window.matchMedia("(max-width: 900px)").matches || (navigator.connection && navigator.connection.saveData);
-    const src = small && P.videoPortadaMovil ? P.videoPortadaMovil : P.videoPortada;
+    const src = small && TR.videoMovil ? TR.videoMovil : TR.video;
+    if (TR.poster) tv.poster = small && TR.posterMovil ? TR.posterMovil : TR.poster;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    hv = document.createElement("video");
-    hv.muted = true; hv.loop = true; hv.playsInline = true; hv.preload = "auto";
-    hv.setAttribute("playsinline", ""); hv.setAttribute("muted", "");
-    hv.src = src;
-    hv.addEventListener("playing", () => hv.classList.add("ready"));
-    $("#heroBg").appendChild(hv);
-    if (!still) hv.play().catch(() => {});
-    $("#soundBtn").hidden = false;
-    const enter = () => {
-      hero.classList.add("watching"); nav.classList.add("hide");
-      hv.loop = false; hv.muted = false; hv.currentTime = 0; hv.play().catch(() => {});
-      $("#muteBtn").textContent = t("mute");
+    let loaded = false, userPaused = false;
+    const load = () => { if (!loaded) { tv.src = src; tv.preload = "auto"; loaded = true; } };
+    const btn = $("#trSound"), txt = $("#trSoundTxt"), ico = btn.querySelector(".ico");
+    window.__trSync = () => {
+      txt.textContent = t(tv.muted ? "sound_on" : "sound_off");
+      ico.textContent = tv.muted ? "🔇" : "🔊";
+      btn.classList.toggle("on", !tv.muted);
     };
-    const exit = () => {
-      hero.classList.remove("watching"); nav.classList.remove("hide");
-      hv.muted = true; hv.loop = true; hv.play().catch(() => {});
-    };
-    $("#soundBtn").addEventListener("click", enter);
-    // Pantalla de entrada: el clic del visitante permite arrancar con sonido
-    const intro = $("#intro");
-    if (!document.documentElement.classList.contains("no-intro")) {
-      document.body.style.overflow = "hidden";
-      const close = (withSound) => {
-        try { sessionStorage.setItem("introSeen", "1"); } catch (e) {}
-        intro.classList.add("out"); document.body.style.overflow = "";
-        if (withSound) enter(); else hv.play().catch(() => {});
-        setTimeout(() => intro.remove(), 800);
-      };
-      $("#introBtn").addEventListener("click", () => close(true));
-      $("#introSkip").addEventListener("click", () => close(false));
-    } else intro.remove();
-    $("#exitBtn").addEventListener("click", exit);
-    $("#muteBtn").addEventListener("click", () => { hv.muted = !hv.muted; $("#muteBtn").textContent = t(hv.muted ? "unmute" : "mute"); });
-    hv.addEventListener("ended", exit);
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && hero.classList.contains("watching")) exit(); });
-    // Pausar cuando no se ve (ahorra batería); si estaba con sonido, salir del modo tráiler
+    window.__trSync();
+    btn.addEventListener("click", () => {
+      load();
+      if (tv.muted) {
+        tv.muted = false;
+        if (tv.currentTime > 1 && !tv.dataset.restarted) { tv.currentTime = 0; tv.dataset.restarted = "1"; }
+      } else tv.muted = true;
+      tv.play().catch(() => {});
+      window.__trSync();
+    });
+    $("#trFull").addEventListener("click", () => {
+      load();
+      const el = tv;
+      if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+      else if (el.webkitEnterFullscreen) el.webkitEnterFullscreen();
+      if (tv.muted) { tv.muted = false; tv.currentTime = 0; window.__trSync(); }
+      tv.play().catch(() => {});
+    });
+    // Precarga cuando se acerca; se reproduce al verse y se pausa al salir
+    new IntersectionObserver(([en]) => { if (en.isIntersecting) load(); }, { rootMargin: "600px 0px" }).observe(trSec);
     new IntersectionObserver(([en]) => {
-      if (en.isIntersecting) { if (!still || hero.classList.contains("watching")) hv.play().catch(() => {}); }
-      else { if (hero.classList.contains("watching")) exit(); hv.pause(); }
-    }, { threshold: 0.25 }).observe(hero);
+      if (en.isIntersecting) { load(); if (!still || !tv.muted) tv.play().catch(() => {}); }
+      else tv.pause();
+    }, { threshold: 0.4 }).observe(tv);
   }
   const tc = $("#tc"), t0 = performance.now();
   const pad = (n) => String(n).padStart(2, "0");
@@ -241,6 +233,7 @@
     document.querySelectorAll("#lang [data-l]").forEach((s) => s.classList.toggle("on", s.dataset.l === L));
     $("#heroFrase").textContent = loc(P.frase);
     renderStats(); renderGrid(); renderArtists(); renderAbout(); numberSections();
+    if (window.__trSync) window.__trSync();
   }
   $("#lang").addEventListener("click", () => {
     L = L === "es" ? "en" : "es";

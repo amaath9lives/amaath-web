@@ -12,12 +12,8 @@ const PERFIL = {
     es: "Director de videoclips. Madrid.",
     en: "Music video director. Madrid.",
   },
-  // Vídeo de portada (con sonido al pulsar el botón). Versión para ordenador
-  // y versión ligera para móvil, en la carpeta "video".
-  videoPortada: "video/trailer-1080.mp4",
-  videoPortadaMovil: "video/trailer-720.mp4",
-  // Imagen que se ve mientras carga el vídeo
-  fotoPortada: "img/trailer-poster.webp",
+  // Foto de portada (carpeta img)
+  fotoPortada: "img/portada.webp",
   // Cifras bajo la portada. Pon aquí tus números reales.
   cifras: [
     { valor: "100+", es: "videoclips dirigidos", en: "music videos directed" },
@@ -25,6 +21,16 @@ const PERFIL = {
     { valor: "120M+", es: "visualizaciones en YouTube", en: "YouTube views" },
     { valor: "30+", es: "artistas", en: "artists" },
   ],
+};
+
+/* ---------- TRÁILER (sale al bajar, debajo de la portada) ----------
+   Versión para ordenador y versión ligera para móvil, en la carpeta "video".
+   Si dejas video vacío "", la sección no aparece. */
+const TRAILER = {
+  video: "video/trailer-1080.mp4",
+  videoMovil: "video/trailer-720.mp4",
+  poster: "img/trailer-poster.webp",
+  posterMovil: "img/trailer-poster-m.webp",
 };
 
 /* ---------- SOBRE MÍ (cada línea es un párrafo) ---------- */
