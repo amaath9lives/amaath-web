@@ -51,5 +51,5 @@ const CONTACTO = {
   tiktok: "amaath9lives",
   // Clave de Web3Forms (la que te llega por email). Sin ella, el formulario
   // abre el correo del cliente con el brief ya escrito.
-  web3formsKey: "",
+  web3formsKey: "c8defed5-4682-4a3b-81d4-741918e5f040",
 };
