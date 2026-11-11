@@ -46,7 +46,7 @@ const SOBRE_MI = {
    Si la lista está vacía, la sección no aparece. */
 const ARTISTAS = [
   "Hard GZ", "Nikone", "Miranda", "Grind", "Nadal015", "Lia Kali", "Denom",
-  "Raul Clyde", "Arce", "Sosad", "Zeballos", "Fyahbwoy", "Sofia Gabanna",
+  "Raul Clyde", "Arce", "Sosad", "Fernandocosta", "Zeballos", "Fyahbwoy", "Sofia Gabanna",
   "Blake", "Swit Eme", "Makro", "Anier", "Shoren", "Jado PVG", "Kelly Fara",
   "PGJ", "Shei ZNP", "Xenon", "MXNDXZ", "JM", "Neska",
 ];
