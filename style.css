@@ -9,9 +9,9 @@
 :root{
   --bg:#0c0c0c;--bg2:#141414;--fg:#f4f1ec;--mute:#8d8880;--dim:#5b5852;
   --line:rgba(244,241,236,.09);--rec:#ff3b30;
-  --pad:clamp(18px,4vw,56px);--g:clamp(24px,4vw,64px);--max:1440px;
+  --z:1;--pad:clamp(18px,4vw,56px);--g:clamp(24px,4vw,64px);--max:1440px;
 }
-html{scroll-behavior:smooth;background:var(--bg)}
+html{scroll-behavior:smooth;background:var(--bg);zoom:var(--z)}
 body{background:var(--bg);color:var(--fg);font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a{color:inherit;text-decoration:none}
 img,video{display:block;max-width:100%}
@@ -37,7 +37,7 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .links a:hover{color:var(--fg)}
 
 /* ---------- Portada ---------- */
-.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
+.hero{position:relative;height:calc(100svh / var(--z));min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 20%,#262320 0%,#121110 45%,#0c0c0c 100%)}
 .hero-bg img,.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;filter:saturate(.95) contrast(1.05)}
 .hero-bg video{z-index:1}
@@ -186,3 +186,12 @@ footer{max-width:var(--max);margin:clamp(90px,12vw,150px) auto 0;padding:clamp(4
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media (min-width:901px){.artists{margin-left:calc((100% - var(--g)) / 6 + var(--g))}}
+
+/* Pantallas grandes: la web escala en proporción para verse igual que en un portátil */
+@media (min-width:1600px){:root{--z:1.1}}
+@media (min-width:1760px){:root{--z:1.2}}
+@media (min-width:1900px){:root{--z:1.32}}
+@media (min-width:2100px){:root{--z:1.45}}
+@media (min-width:2300px){:root{--z:1.58}}
+@media (min-width:2500px){:root{--z:1.74}}
+@media (min-width:2800px){:root{--z:1.9}}

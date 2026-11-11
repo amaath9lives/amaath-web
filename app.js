@@ -94,7 +94,7 @@
 
   function renderStats() {
     stats.innerHTML = "";
-    (P.cifras || []).forEach((c) => {
+    (P.cifras || []).filter((c) => c.valor && c.valor.trim() !== "—").forEach((c) => {
       const d = document.createElement("div");
       d.className = "stat";
       d.innerHTML = "<b>" + esc(c.valor) + '</b><span class="mono">' + esc(c[L] || c.es || c.texto || "") + "</span>";
