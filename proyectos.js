@@ -9,8 +9,8 @@ const PERFIL = {
   nombreReal: "Alexandru Hristu",
   usuario: "amaath9lives",
   frase: {
-    es: "Director de videoclips. Madrid.",
-    en: "Music video director. Madrid.",
+    es: "Director. Música, marcas y contenido.",
+    en: "Director. Music, brands and content.",
   },
   // Vídeo de portada (tráiler). Versión para ordenador y versión ligera para móvil.
   videoPortada: "video/trailer-1080.mp4",
@@ -54,17 +54,30 @@ const ARTISTAS = [
   "Fyahbwoy", "Sofia Gabanna",
 ];
 
-/* ---------- TUS VIDEOCLIPS ----------
-   Cada bloque { ... } es un trabajo. El orden aquí es el orden en la web.
-   - artista: nombre del artista (también crea el filtro por artista)
-   - titulo:  nombre de la canción
-   - anio:    año (opcional)
-   - visitas: ej. "2,4M" (opcional)
-   - video:   enlace de YouTube o Vimeo, tal cual lo copias
-   - portada: imagen en la carpeta "img" (ej. "img/clip01.jpg"), 16:9.
-              Si lo dejas vacío "", se usa la portada de YouTube.
-   - loop:    (opcional) mp4 corto sin audio que se reproduce al pasar el ratón
-   Para añadir más: copia un bloque entero. Para quitar uno: bórralo entero. */
+/* ---------- TRABAJO SELECCIONADO — TU NIVEL ACTUAL ----------
+   Es lo primero que se ve después de la portada. Pon aquí 4–6 piezas que
+   te representen HOY: publicidad, marcas, anuncios spec, videoclips recientes…
+   La primera sale en grande.
+
+   tipo:    "Videoclip", "Publicidad", "Spec", "Contenido", "Marca"…
+   artista: el artista o la marca.
+   video:   enlace de YouTube / Vimeo, o un archivo .mp4 de la carpeta video/
+   portada: imagen (opcional si es YouTube o Vimeo)
+
+   Los huecos vacíos NO se ven en la web: aparecen solos cuando los rellenas.
+*/
+const SELECCIONADOS = [
+  { tipo: "Videoclip · Tráiler", titulo: "Háblalo Bajito", artista: "Sosad", anio: "", video: "video/trailer-1080.mp4", portada: "img/trailer-poster.webp", loop: "" },
+  { tipo: "", titulo: "", artista: "", anio: "", video: "", portada: "", loop: "" },
+  { tipo: "", titulo: "", artista: "", anio: "", video: "", portada: "", loop: "" },
+  { tipo: "", titulo: "", artista: "", anio: "", video: "", portada: "", loop: "" },
+  { tipo: "", titulo: "", artista: "", anio: "", video: "", portada: "", loop: "" },
+];
+
+/* ---------- ARCHIVO — VIDEOCLIPS (los más vistos) ----------
+   Sale como lista compacta debajo del trabajo seleccionado.
+   Una línea por videoclip, en el orden en que quieres que salgan.
+*/
 const PROYECTOS = [
   { artista: "Hard GZ & Nikone", titulo: "Lo Real", anio: "", visitas: "22M", video: "https://youtu.be/I96S7SxeVV0", portada: "", loop: "" },
   { artista: "Miranda & Hard GZ", titulo: "Volver", anio: "", visitas: "13M", video: "https://youtu.be/SAn9ya_nKPc", portada: "", loop: "" },
