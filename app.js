@@ -25,6 +25,7 @@
       f_date: "Fecha aproximada", f_date_ph: "Ej. finales de enero",
       f_idea: "Idea, canción y referencias", f_idea_ph: "Enlace a la canción, la idea, referencias visuales…",
       f_send: "Enviar brief", close: "Cerrar",
+      intro_enter: "Entrar", intro_hint: "Tráiler · con sonido", intro_skip: "Entrar sin sonido",
       watch_sound: "Ver tráiler con sonido", mute: "Silenciar", unmute: "Activar sonido", exit: "Salir",
       empty: "Hueco para videoclip", empty_t: "Título", empty_a: "Artista", watch: "▶ Ver vídeo", all: "Todos",
       err_fields: "Revisa los campos marcados", sending: "Enviando…", ok: "Recibido. Te escribo en 24–48 h.", err_send: "No se pudo enviar. Escríbeme a",
@@ -43,6 +44,7 @@
       f_date: "Approx. date", f_date_ph: "E.g. late January",
       f_idea: "Idea, track and references", f_idea_ph: "Link to the track, the idea, visual references…",
       f_send: "Send brief", close: "Close",
+      intro_enter: "Enter", intro_hint: "Trailer · sound on", intro_skip: "Enter without sound",
       watch_sound: "Watch trailer with sound", mute: "Mute", unmute: "Unmute", exit: "Exit",
       empty: "Music video slot", empty_t: "Title", empty_a: "Artist", watch: "▶ Watch", all: "All",
       err_fields: "Check the highlighted fields", sending: "Sending…", ok: "Received. I'll get back to you within 24–48 h.", err_send: "Couldn't send it. Email me at",
@@ -82,6 +84,7 @@
   // ---------- Vídeo de portada ----------
   const hero = $("#top"), nav = $("#nav");
   let hv = null;
+  if (!P.videoPortada) { const i = $("#intro"); if (i) i.remove(); }
   if (P.videoPortada) {
     const small = window.matchMedia("(max-width: 900px)").matches || (navigator.connection && navigator.connection.saveData);
     const src = small && P.videoPortadaMovil ? P.videoPortadaMovil : P.videoPortada;
@@ -104,6 +107,19 @@
       hv.muted = true; hv.loop = true; hv.play().catch(() => {});
     };
     $("#soundBtn").addEventListener("click", enter);
+    // Pantalla de entrada: el clic del visitante permite arrancar con sonido
+    const intro = $("#intro");
+    if (!document.documentElement.classList.contains("no-intro")) {
+      document.body.style.overflow = "hidden";
+      const close = (withSound) => {
+        try { sessionStorage.setItem("introSeen", "1"); } catch (e) {}
+        intro.classList.add("out"); document.body.style.overflow = "";
+        if (withSound) enter(); else hv.play().catch(() => {});
+        setTimeout(() => intro.remove(), 800);
+      };
+      $("#introBtn").addEventListener("click", () => close(true));
+      $("#introSkip").addEventListener("click", () => close(false));
+    } else intro.remove();
     $("#exitBtn").addEventListener("click", exit);
     $("#muteBtn").addEventListener("click", () => { hv.muted = !hv.muted; $("#muteBtn").textContent = t(hv.muted ? "unmute" : "mute"); });
     hv.addEventListener("ended", exit);

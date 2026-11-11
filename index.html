@@ -16,8 +16,16 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="image" href="img/trailer-poster.webp" imagesrcset="img/trailer-poster-m.webp 900w, img/trailer-poster.webp 1620w" imagesizes="100vw">
 <link rel="stylesheet" href="style.css">
+<script>try{if(sessionStorage.getItem("introSeen")||location.hash)document.documentElement.classList.add("no-intro")}catch(e){}</script>
 </head>
 <body>
+
+<div class="intro" id="intro" role="dialog" aria-label="Entrada">
+  <img class="intro-logo" src="img/logo.webp" alt="directed by amaath 9 Lives" width="1400" height="410">
+  <button class="intro-btn" id="introBtn"><span class="tri">▶</span> <span data-i="intro_enter">Entrar</span></button>
+  <p class="mono intro-hint"><span class="rec"></span><span data-i="intro_hint">Tráiler · con sonido</span></p>
+  <button class="mono intro-skip" id="introSkip" data-i="intro_skip">Entrar sin sonido</button>
+</div>
 
 <nav class="nav" id="nav">
   <a class="brand" href="#top" aria-label="Amaath — inicio"><img src="img/logo.webp" alt="directed by amaath 9 Lives" width="900" height="264"></a>

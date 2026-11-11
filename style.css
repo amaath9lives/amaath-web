@@ -73,6 +73,18 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .nav.hide{opacity:0;pointer-events:none}
 .nav{transition:background .3s,border-color .3s,opacity .4s}
 
+/* Pantalla de entrada */
+.intro{position:fixed;inset:0;z-index:200;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(28px,5vh,48px);padding:var(--pad);transition:opacity .7s ease,visibility .7s}
+.intro.out{opacity:0;visibility:hidden}
+.no-intro .intro{display:none}
+.intro-logo{width:clamp(240px,42vw,620px);height:auto}
+.intro-btn{display:inline-flex;align-items:center;gap:12px;background:var(--fg);color:#000;border:0;border-radius:999px;padding:17px 34px;font:500 17px Geist,sans-serif;letter-spacing:-.01em;cursor:pointer;transition:transform .2s,opacity .2s}
+.intro-btn:hover{transform:scale(1.04)}
+.intro-btn .tri{color:var(--rec);font-size:13px}
+.intro-hint{color:var(--mute)}
+.intro-skip{position:absolute;bottom:clamp(20px,4vh,36px);background:none;border:0;color:var(--dim);cursor:pointer;font-size:11px;transition:color .2s}
+.intro-skip:hover{color:var(--fg)}
+
 /* ---------- Cifras ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--max);margin:0 auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{padding:28px var(--pad);border-left:1px solid var(--line)}
