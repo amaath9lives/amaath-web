@@ -73,6 +73,7 @@
   }
 
   // ---------- Portada ----------
+  if (P.nombre) $("#heroName").textContent = P.nombre;
   if (P.nombreReal) $("#realName").textContent = P.nombreReal;
   if (P.usuario) { const h = $("#handle"); h.textContent = "@" + P.usuario; h.href = "https://instagram.com/" + P.usuario; }
   if (P.fotoPortada && P.fotoPortada !== "img/trailer-poster.webp") {
@@ -159,6 +160,13 @@
           "</div>" +
           '<div class="meta"><span class="mono n">' + n + "</span><h3>" + esc(p.titulo) + "<small>" + esc(p.artista) + (p.anio ? " · " + esc(p.anio) : "") + "</small></h3>" +
           (p.visitas ? '<span class="mono v">' + esc(p.visitas) + "</span>" : "<span></span>") + "</div>";
+        const im = card.querySelector("img");
+        const y = ytId(p.video);
+        if (im && y && !p.portada) {
+          const chain = ["sddefault", "hqdefault"];
+          im.addEventListener("error", function f() { const n = chain.shift(); if (n) im.src = "https://i.ytimg.com/vi/" + y + "/" + n + ".jpg"; else im.removeEventListener("error", f); });
+          im.addEventListener("load", () => { if (im.naturalWidth <= 120 && chain.length) im.dispatchEvent(new Event("error")); });
+        }
         const vid = card.querySelector("video");
         if (vid) {
           card.addEventListener("mouseenter", () => vid.play().catch(() => {}));
@@ -175,7 +183,7 @@
     // Filtros por artista (solo con 2 o más artistas)
     chips.innerHTML = "";
     const artists = [...new Set(filled.map((p) => (p.artista || "").trim()).filter(Boolean))];
-    if (artists.length >= 2) {
+    if (artists.length >= 2 && artists.length <= 6) {
       [t("all")].concat(artists).forEach((a, i) => {
         const b = document.createElement("button");
         b.className = "chip" + (i === filter ? " on" : "");

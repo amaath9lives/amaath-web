@@ -22,8 +22,8 @@ const PERFIL = {
   cifras: [
     { valor: "100+", es: "videoclips dirigidos", en: "music videos directed" },
     { valor: "2018", es: "primer videoclip", en: "first music video" },
-    { valor: "—", es: "visitas en YouTube", en: "YouTube views" },
-    { valor: "—", es: "artistas", en: "artists" },
+    { valor: "120M+", es: "visualizaciones en YouTube", en: "YouTube views" },
+    { valor: "30+", es: "artistas", en: "artists" },
   ],
 };
 
@@ -45,7 +45,10 @@ const SOBRE_MI = {
    Escribe los nombres entre comillas, separados por comas.
    Si la lista está vacía, la sección no aparece. */
 const ARTISTAS = [
-  // "Artista 1", "Artista 2", "Artista 3",
+  "Hard GZ", "Fyahbwoy", "Nikone", "Miranda", "Nadal015", "Grind", "Denom",
+  "Sofia Gabanna", "Lia Kali", "Blake", "Swit Eme", "Arce", "Makro", "Anier",
+  "Sosad", "Shoren", "Jado PVG", "Raul Clyde", "Zeballos", "Kelly Fara",
+  "PGJ", "Shei ZNP", "Xenon", "MXNDXZ", "JM", "Neska",
 ];
 
 /* ---------- TUS VIDEOCLIPS ----------
@@ -60,18 +63,18 @@ const ARTISTAS = [
    - loop:    (opcional) mp4 corto sin audio que se reproduce al pasar el ratón
    Para añadir más: copia un bloque entero. Para quitar uno: bórralo entero. */
 const PROYECTOS = [
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
-  { artista: "", titulo: "", anio: "", visitas: "", video: "", portada: "", loop: "" },
+  { artista: "Hard GZ & Nikone", titulo: "Lo Real", anio: "", visitas: "22M", video: "https://youtu.be/I96S7SxeVV0", portada: "", loop: "" },
+  { artista: "Miranda & Hard GZ", titulo: "Volver", anio: "", visitas: "13M", video: "https://youtu.be/SAn9ya_nKPc", portada: "", loop: "" },
+  { artista: "Nadal015", titulo: "Street Shark", anio: "", visitas: "12M", video: "https://youtu.be/G80kKs0ait4", portada: "", loop: "" },
+  { artista: "Grind", titulo: "Goat", anio: "", visitas: "5,1M", video: "https://youtu.be/GoN7N9FnH1c", portada: "", loop: "" },
+  { artista: "Sofia Gabanna & Hard GZ", titulo: "Vivimos Deprisa", anio: "", visitas: "4,4M", video: "https://youtu.be/-PkNgMNnr2I", portada: "", loop: "" },
+  { artista: "Miranda & Nadal015", titulo: "Demons", anio: "", visitas: "4,4M", video: "https://youtu.be/Yzz6zoiN8NM", portada: "", loop: "" },
+  { artista: "Blake", titulo: "Muy Fan", anio: "", visitas: "3,9M", video: "https://youtu.be/6lRDwuvsdKU", portada: "", loop: "" },
+  { artista: "Miranda", titulo: "Destello", anio: "", visitas: "3,7M", video: "https://youtu.be/j2-u328M9CA", portada: "", loop: "" },
+  { artista: "Hard GZ & Denom ft. Lia Kali", titulo: "Ayer", anio: "", visitas: "2,7M", video: "https://youtu.be/E_czYtKq8PU", portada: "", loop: "" },
+  { artista: "Arce ft. Nadal015", titulo: "Kazike", anio: "", visitas: "2,3M", video: "https://youtu.be/b9Bo321g2n4", portada: "", loop: "" },
+  { artista: "Swit Eme & Nikone", titulo: "Hasta el Final", anio: "", visitas: "2M", video: "https://youtu.be/oEAZpMq-ukI", portada: "", loop: "" },
+  { artista: "Fyahbwoy & Nadal015", titulo: "Perros", anio: "", visitas: "1,5M", video: "https://youtu.be/e2nnLKiC3ag", portada: "", loop: "" },
 ];
 
 /* ---------- CONTACTO ---------- */

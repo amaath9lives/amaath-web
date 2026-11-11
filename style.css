@@ -50,8 +50,7 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .hero-side{position:absolute;right:var(--pad);bottom:clamp(40px,7vh,80px);text-align:right;color:var(--mute);line-height:2}
 .hero-side b{color:var(--fg);font-weight:500}
 .tc #tc{color:var(--fg);margin-left:6px}
-.hero-logo{line-height:0}
-.hero-logo img{width:clamp(270px,46vw,720px);height:auto;filter:drop-shadow(0 4px 30px rgba(0,0,0,.45))}
+.hero-name{font:600 clamp(76px,15vw,240px)/.82 Geist,Inter,sans-serif;letter-spacing:-.065em;margin-left:-.04em;text-shadow:0 4px 40px rgba(0,0,0,.35)}
 .who{margin-top:22px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;font:500 clamp(17px,1.5vw,21px) Geist,sans-serif;letter-spacing:-.01em}
 .who .sep{color:var(--dim)}
 .handle{font-size:13px;text-transform:none;color:var(--mute);transition:color .2s}
