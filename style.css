@@ -27,7 +27,11 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 /* ---------- Navegación ---------- */
 .nav{position:fixed;inset:0 0 auto;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:20px var(--pad);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 .nav.solid{background:rgba(12,12,12,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
-.brand{font-weight:600;font-size:17px;letter-spacing:.02em}
+.brand{display:block;line-height:0}
+.brand img{height:30px;width:auto}
+.lang{background:none;border:0;color:var(--dim);cursor:pointer;padding:0;font-size:12px}
+.lang span{transition:color .2s}
+.lang span.on{color:var(--fg)}
 .links{display:flex;gap:clamp(16px,2.4vw,34px)}
 .links a{font:500 12px "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);transition:color .2s}
 .links a:hover{color:var(--fg)}
@@ -35,8 +39,9 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 /* ---------- Portada ---------- */
 .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 20%,#262320 0%,#121110 45%,#0c0c0c 100%)}
-.hero-bg video{width:100%;height:100%;object-fit:cover;opacity:.55}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(12,12,12,.2) 45%,rgba(12,12,12,.35) 100%)}
+.hero-bg img,.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;filter:saturate(.95) contrast(1.05)}
+.hero-bg video{z-index:1}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(12,12,12,.78) 22%,rgba(12,12,12,.15) 55%,rgba(12,12,12,.45) 100%),linear-gradient(to right,rgba(12,12,12,.55) 0%,rgba(12,12,12,0) 50%)}
 .grain{position:absolute;inset:-50%;z-index:1;opacity:.07;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(6) infinite}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}}
 .hero-in{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad) clamp(40px,7vh,80px)}
@@ -44,8 +49,13 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .hero-side{position:absolute;right:var(--pad);bottom:clamp(40px,7vh,80px);text-align:right;color:var(--mute);line-height:2}
 .hero-side b{color:var(--fg);font-weight:500}
 .tc #tc{color:var(--fg);margin-left:6px}
-.hero h1{font-weight:600;font-size:clamp(76px,16vw,250px);line-height:.82;letter-spacing:-.065em;margin-left:-.04em}
-.lead{margin-top:22px;font-size:clamp(17px,1.6vw,22px);color:rgba(244,241,236,.85);max-width:32ch}
+.hero-logo{line-height:0}
+.hero-logo img{width:clamp(270px,46vw,720px);height:auto;filter:drop-shadow(0 4px 30px rgba(0,0,0,.45))}
+.who{margin-top:22px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;font:500 clamp(17px,1.5vw,21px) Geist,sans-serif;letter-spacing:-.01em}
+.who .sep{color:var(--dim)}
+.handle{font-size:13px;text-transform:none;color:var(--mute);transition:color .2s}
+.handle:hover{color:var(--fg)}
+.lead{margin-top:8px;color:var(--mute)!important;font-size:clamp(17px,1.6vw,22px);color:rgba(244,241,236,.85);max-width:32ch}
 
 /* ---------- Cifras ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--max);margin:0 auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -89,13 +99,20 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .card.empty h3{color:var(--dim)}
 .card.hide{display:none}
 
+/* Artistas */
+.artists{font:500 clamp(26px,3.6vw,52px)/1.18 Geist,sans-serif;letter-spacing:-.035em;color:var(--fg);max-width:1200px}
+.artists span{white-space:nowrap}
+.artists i{font-style:normal;color:var(--dim);margin:0 .32em}
+
 /* Sobre mí */
 .about{display:grid;grid-template-columns:minmax(80px,1fr) 3fr 2fr;gap:0 var(--g)}
 .about>div:first-child{grid-column:2}
 .big{font-weight:500;font-size:clamp(24px,2.6vw,36px);line-height:1.22;letter-spacing:-.03em;margin-bottom:26px}
 .about p:not(.big){color:rgba(244,241,236,.78);max-width:52ch;margin-bottom:14px}
 .about strong{color:var(--fg);font-weight:500}
-.portrait{grid-column:3;aspect-ratio:4/5;width:100%;object-fit:cover;border-radius:4px}
+.portrait-wrap{grid-column:3;margin:0}
+.portrait{aspect-ratio:4/5;width:100%;height:auto;object-fit:cover;border-radius:4px;filter:saturate(.9)}
+.portrait-wrap figcaption{margin-top:12px;color:var(--dim)}
 .portrait.ph{display:grid;place-items:center;border:1px dashed rgba(244,241,236,.12);color:var(--dim);font:500 12px "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
 
 /* Qué hago */
@@ -129,7 +146,9 @@ textarea{min-height:140px;resize:vertical}
 .status.err{color:var(--rec)}
 
 /* Pie */
-footer{max-width:var(--max);margin:clamp(90px,12vw,150px) auto 0;display:flex;justify-content:space-between;gap:16px;padding:26px var(--pad) 34px;border-top:1px solid var(--line);color:var(--dim)}
+footer{max-width:var(--max);margin:clamp(90px,12vw,150px) auto 0;padding:clamp(40px,6vw,70px) var(--pad) 34px;border-top:1px solid var(--line);color:var(--dim)}
+.foot-logo{width:clamp(220px,40vw,560px);height:auto;opacity:.92}
+.foot-meta{display:flex;justify-content:space-between;gap:16px;margin-top:40px}
 
 /* Visor */
 .lb{position:fixed;inset:0;z-index:100;background:rgba(6,6,6,.97);display:none;align-items:center;justify-content:center;padding:var(--pad)}
@@ -148,8 +167,8 @@ footer{max-width:var(--max);margin:clamp(90px,12vw,150px) auto 0;display:flex;ju
   .sec-head{grid-template-columns:1fr}
   .sec-head .label{margin-bottom:10px}
   .about,.contact{grid-template-columns:1fr}
-  .about>div:first-child,.contact>div:first-child,.portrait,form{grid-column:1}
-  .portrait{margin-top:30px;max-width:420px}
+  .about>div:first-child,.contact>div:first-child,.portrait-wrap,form{grid-column:1}
+  .portrait-wrap{margin-top:30px;max-width:420px}
   form{margin-top:40px}
   .services li{grid-template-columns:44px 1fr}
   .services p{grid-column:2}
@@ -161,6 +180,9 @@ footer{max-width:var(--max);margin:clamp(90px,12vw,150px) auto 0;display:flex;ju
   .links{gap:14px}
   .links a{font-size:11px}
   .play{opacity:1;transform:none}
-  footer{flex-direction:column}
+  .foot-meta{flex-direction:column}
+  .hero-bg img{object-position:56% 30%}
+  .brand img{height:24px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (min-width:901px){.artists{margin-left:calc((100% - var(--g)) / 6 + var(--g))}}

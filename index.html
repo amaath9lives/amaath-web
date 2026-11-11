@@ -3,36 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Amaath — Director de videoclips · Madrid</title>
-<meta name="description" content="Amaath, director de videoclips en Madrid. Más de 100 videoclips para la escena urbana desde 2018. Dirección, edición y color.">
+<title>Amaath (Alexandru Hristu) — Director de videoclips · Madrid</title>
+<meta name="description" content="Amaath (Alexandru Hristu), director de videoclips en Madrid. Más de 100 videoclips para la escena urbana desde 2018. Dirección, edición y color.">
 <meta property="og:title" content="Amaath — Director de videoclips">
-<meta property="og:description" content="Más de 100 videoclips para la escena urbana desde 2018. Madrid.">
+<meta property="og:description" content="Alexandru Hristu · @amaath9lives. Más de 100 videoclips para la escena urbana desde 2018. Madrid.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://amaath.com/">
+<meta property="og:image" content="https://amaath.com/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0c0c0c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0c0c'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ff3b30'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="image" href="img/portada.webp">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <a class="brand" href="#top"><span class="rec" aria-hidden="true"></span>AMAATH</a>
+  <a class="brand" href="#top" aria-label="Amaath — inicio"><img src="img/logo.webp" alt="directed by amaath 9 Lives" width="900" height="264"></a>
   <div class="links">
-    <a href="#trabajos">Trabajos</a>
-    <a href="#sobre">Sobre mí</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#trabajos" data-i="nav_work">Trabajos</a>
+    <a href="#sobre" data-i="nav_about">Sobre mí</a>
+    <a href="#contacto" data-i="nav_contact">Contacto</a>
+    <button class="lang mono" id="lang" aria-label="Cambiar idioma"><span data-l="es">ES</span> / <span data-l="en">EN</span></button>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg" id="heroBg">
+    <img id="heroImg" src="img/portada.webp" alt="Amaath dirigiendo en rodaje" fetchpriority="high">
+  </div>
   <div class="grain" aria-hidden="true"></div>
   <div class="hero-in">
     <p class="mono tc" aria-hidden="true"><span class="rec"></span>REC <span id="tc">00:00:00:00</span></p>
-    <h1 id="heroName">Amaath</h1>
+    <h1 class="hero-logo"><img src="img/logo.webp" alt="Amaath — directed by amaath 9 Lives" width="1400" height="410"></h1>
+    <p class="who"><span id="realName">Alexandru Hristu</span><span class="sep">·</span><a class="mono handle" id="handle" target="_blank" rel="noopener">@amaath9lives</a></p>
     <p class="lead" id="heroFrase">Director de videoclips. Madrid.</p>
-    <p class="mono hero-side"><b>Dirección · Edición · Color</b><br>Madrid — ES<br><a href="#trabajos">Ver trabajos ↓</a></p>
+    <p class="mono hero-side"><b data-i="hero_side">Dirección · Edición · Color</b><br>Madrid — ES<br><a href="#trabajos" data-i="hero_cta">Ver trabajos ↓</a></p>
   </div>
 </header>
 
@@ -41,50 +48,55 @@
 <section class="sec" id="trabajos">
   <div class="sec-head">
     <p class="mono label">(01)</p>
-    <h2>Trabajos <span class="mono count" id="count"></span></h2>
+    <h2><span data-i="work_title">Trabajos</span> <span class="mono count" id="count"></span></h2>
   </div>
   <div class="chips" id="chips"></div>
   <div class="grid" id="grid"></div>
 </section>
 
-<section class="sec" id="sobre">
+<section class="sec" id="artistas" hidden>
   <div class="sec-head">
     <p class="mono label">(02)</p>
-    <h2>Sobre mí</h2>
+    <h2 data-i="artists_title">Artistas</h2>
+  </div>
+  <p class="artists" id="artistList"></p>
+</section>
+
+<section class="sec" id="sobre">
+  <div class="sec-head">
+    <p class="mono label n-about">(03)</p>
+    <h2 data-i="about_title">Sobre mí</h2>
   </div>
   <div class="about">
-    <div>
-      <!-- EDITA ESTE TEXTO A TU GUSTO -->
-      <p class="big">Empecé en 2018 con una cámara y sin saber nada. Desde entonces he dirigido más de 100 videoclips para la escena urbana.</p>
-      <p>Autodidacta. La dirección, la edición y el color pasan por las mismas manos, así que lo que se imagina en el guion es lo que llega a la pantalla.</p>
-      <p>Produzco a través de <strong>NINELIVES</strong>.</p>
-    </div>
-    <!-- Pon tu foto en img/retrato.jpg y cambia este bloque por: <img class="portrait" src="img/retrato.jpg" alt="Amaath"> -->
-    <div class="portrait ph">Tu foto aquí · 4:5</div>
+    <div id="aboutText"></div>
+    <figure class="portrait-wrap">
+      <img class="portrait" src="img/retrato.webp" alt="Alexandru Hristu (Amaath)" width="719" height="900" loading="lazy">
+      <figcaption class="mono">Alexandru Hristu — Madrid</figcaption>
+    </figure>
   </div>
 </section>
 
 <section class="sec" id="servicios">
   <div class="sec-head">
-    <p class="mono label">(03)</p>
-    <h2>Qué hago</h2>
+    <p class="mono label n-serv">(04)</p>
+    <h2 data-i="serv_title">Qué hago</h2>
   </div>
   <ol class="services">
-    <li><span class="mono">01</span><h3>Dirección</h3><p>De la idea y el guion al rodaje. Tratamiento visual pensado para la canción y para el artista.</p></li>
-    <li><span class="mono">02</span><h3>Producción</h3><p>Equipo, localizaciones y plan de rodaje a través de NINELIVES. Un solo interlocutor de principio a fin.</p></li>
-    <li><span class="mono">03</span><h3>Edición y color</h3><p>Montaje y etalonaje en DaVinci Resolve. El look se decide en rodaje y se termina en postproducción.</p></li>
+    <li><span class="mono">01</span><h3 data-i="s1_t">Dirección</h3><p data-i="s1_p">De la idea y el guion al rodaje. Tratamiento visual pensado para la canción y para el artista.</p></li>
+    <li><span class="mono">02</span><h3 data-i="s2_t">Producción</h3><p data-i="s2_p">Equipo, localizaciones y plan de rodaje a través de NINELIVES. Un solo interlocutor de principio a fin.</p></li>
+    <li><span class="mono">03</span><h3 data-i="s3_t">Edición y color</h3><p data-i="s3_p">Montaje y etalonaje en DaVinci Resolve. El look se decide en rodaje y se termina en postproducción.</p></li>
   </ol>
 </section>
 
 <section class="sec" id="contacto">
   <div class="sec-head">
-    <p class="mono label">(04)</p>
-    <h2>Contacto</h2>
+    <p class="mono label n-contact">(05)</p>
+    <h2 data-i="contact_title">Contacto</h2>
   </div>
   <div class="contact">
     <div>
-      <p class="big">¿Tienes un tema y una idea? Cuéntamela.</p>
-      <p class="muted">Respondo en 24–48 h.</p>
+      <p class="big" data-i="contact_big">¿Tienes un tema y una idea? Cuéntamela.</p>
+      <p class="muted" data-i="contact_reply">Respondo en 24–48 h.</p>
       <div class="direct">
         <a data-email class="mono"></a>
         <a data-ig target="_blank" rel="noopener" class="mono">Instagram ↗</a>
@@ -94,42 +106,45 @@
     <form id="brief" novalidate>
       <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
       <div class="row">
-        <label>Nombre<input name="nombre" required autocomplete="name"></label>
-        <label>Artista / proyecto<input name="artista" required></label>
+        <label><span data-i="f_name">Nombre</span><input name="nombre" required autocomplete="name"></label>
+        <label><span data-i="f_artist">Artista / proyecto</span><input name="artista" required></label>
       </div>
       <div class="row">
         <label>Email<input type="email" name="email" required autocomplete="email"></label>
         <label>Instagram<input name="instagram" placeholder="@"></label>
       </div>
       <div class="row">
-        <label>Presupuesto
+        <label><span data-i="f_budget">Presupuesto</span>
           <select name="presupuesto" required>
-            <option value="">Selecciona</option>
-            <option>Menos de 1.000 €</option>
-            <option>1.000 – 3.000 €</option>
-            <option>3.000 – 6.000 €</option>
-            <option>Más de 6.000 €</option>
-            <option>Lo hablamos</option>
+            <option value="" data-i="f_select">Selecciona</option>
+            <option value="Menos de 1.000 €" data-i="b1">Menos de 1.000 €</option>
+            <option value="1.000 – 3.000 €">1.000 – 3.000 €</option>
+            <option value="3.000 – 6.000 €">3.000 – 6.000 €</option>
+            <option value="Más de 6.000 €" data-i="b4">Más de 6.000 €</option>
+            <option value="Lo hablamos" data-i="b5">Lo hablamos</option>
           </select>
         </label>
-        <label>Fecha aproximada<input name="fecha" placeholder="Ej. finales de enero"></label>
+        <label><span data-i="f_date">Fecha aproximada</span><input name="fecha" data-ph="f_date_ph" placeholder="Ej. finales de enero"></label>
       </div>
-      <label>Idea, canción y referencias<textarea name="idea" placeholder="Enlace a la canción, la idea, referencias visuales…"></textarea></label>
+      <label><span data-i="f_idea">Idea, canción y referencias</span><textarea name="idea" data-ph="f_idea_ph" placeholder="Enlace a la canción, la idea, referencias visuales…"></textarea></label>
       <div class="send">
-        <button class="btn" type="submit">Enviar brief</button>
+        <button class="btn" type="submit" data-i="f_send">Enviar brief</button>
         <p class="mono status" id="status" role="status"></p>
       </div>
     </form>
   </div>
 </section>
 
-<footer class="mono">
-  <span>© <span id="year"></span> Amaath · NINELIVES</span>
-  <span>Madrid, España</span>
+<footer>
+  <img class="foot-logo" src="img/logo.webp" alt="directed by amaath 9 Lives" width="900" height="264" loading="lazy">
+  <div class="mono foot-meta">
+    <span>© <span id="year"></span> Alexandru Hristu · Amaath · NINELIVES</span>
+    <span>Madrid, España</span>
+  </div>
 </footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Vídeo">
-  <button class="x mono" aria-label="Cerrar">Cerrar ✕</button>
+  <button class="x mono" aria-label="Cerrar"><span data-i="close">Cerrar</span> ✕</button>
   <div class="frame"></div>
   <p class="cap mono"></p>
 </div>
