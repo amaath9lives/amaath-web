@@ -46,9 +46,8 @@ const SOBRE_MI = {
    Si la lista está vacía, la sección no aparece. */
 const ARTISTAS = [
   "Hard GZ", "Nikone", "Miranda", "Grind", "Nadal015", "Lia Kali", "Denom",
-  "Raul Clyde", "Arce", "Sosad", "Fernandocosta", "Zeballos", "Mayo 214", "Fyahbwoy", "Sofia Gabanna",
-  "Blake", "Swit Eme", "Makro", "Anier", "Shoren", "Jado PVG", "Kelly Fara",
-  "PGJ", "Shei ZNP", "Xenon", "MXNDXZ", "JM", "Neska",
+  "Raul Clyde", "Arce", "Al Safir", "Sosad", "Fernandocosta", "Zeballos", "Mayo 214",
+  "Fyahbwoy", "Sofia Gabanna", "Blake", "Makro", "Anier", "Jado PVG", "PGJ",
 ];
 
 /* ---------- TUS VIDEOCLIPS ----------
