@@ -45,9 +45,9 @@ const SOBRE_MI = {
    Escribe los nombres entre comillas, separados por comas.
    Si la lista está vacía, la sección no aparece. */
 const ARTISTAS = [
-  "Hard GZ", "Fyahbwoy", "Nikone", "Miranda", "Nadal015", "Grind", "Denom",
-  "Sofia Gabanna", "Lia Kali", "Blake", "Swit Eme", "Arce", "Makro", "Anier",
-  "Sosad", "Shoren", "Jado PVG", "Raul Clyde", "Zeballos", "Kelly Fara",
+  "Hard GZ", "Nikone", "Miranda", "Grind", "Nadal015", "Lia Kali", "Denom",
+  "Raul Clyde", "Arce", "Sosad", "Zeballos", "Fyahbwoy", "Sofia Gabanna",
+  "Blake", "Swit Eme", "Makro", "Anier", "Shoren", "Jado PVG", "Kelly Fara",
   "PGJ", "Shei ZNP", "Xenon", "MXNDXZ", "JM", "Neska",
 ];
 
