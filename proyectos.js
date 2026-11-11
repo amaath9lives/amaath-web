@@ -12,10 +12,12 @@ const PERFIL = {
     es: "Director de videoclips. Madrid.",
     en: "Music video director. Madrid.",
   },
-  // Foto de portada (en la carpeta img). Si pones un vídeo en videoPortada,
-  // se usa el vídeo y la foto queda de respaldo mientras carga.
-  fotoPortada: "img/portada.webp",
-  videoPortada: "",
+  // Vídeo de portada (con sonido al pulsar el botón). Versión para ordenador
+  // y versión ligera para móvil, en la carpeta "video".
+  videoPortada: "video/trailer-1080.mp4",
+  videoPortadaMovil: "video/trailer-720.mp4",
+  // Imagen que se ve mientras carga el vídeo
+  fotoPortada: "img/trailer-poster.webp",
   // Cifras bajo la portada. Pon aquí tus números reales.
   cifras: [
     { valor: "100+", es: "videoclips dirigidos", en: "music videos directed" },

@@ -40,8 +40,9 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .hero{position:relative;height:calc(100svh / var(--z));min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 20%,#262320 0%,#121110 45%,#0c0c0c 100%)}
 .hero-bg img,.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
-.hero-bg video{z-index:1}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(12,12,12,.78) 22%,rgba(12,12,12,.15) 55%,rgba(12,12,12,.45) 100%),linear-gradient(to right,rgba(12,12,12,.55) 0%,rgba(12,12,12,0) 50%)}
+.hero-bg video{z-index:1;opacity:0;transition:opacity .8s}
+.hero-bg video.ready{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,var(--bg) 0%,rgba(12,12,12,.88) 20%,rgba(12,12,12,.35) 50%,rgba(12,12,12,.5) 100%),linear-gradient(to right,rgba(12,12,12,.7) 0%,rgba(12,12,12,0) 55%)}
 .grain{position:absolute;inset:-50%;z-index:1;opacity:.07;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(6) infinite}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}}
 .hero-in{position:relative;z-index:2;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad) clamp(40px,7vh,80px)}
@@ -56,6 +57,22 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .handle{font-size:13px;text-transform:none;color:var(--mute);transition:color .2s}
 .handle:hover{color:var(--fg)}
 .lead{margin-top:8px;color:var(--mute)!important;font-size:clamp(17px,1.6vw,22px);color:rgba(244,241,236,.85);max-width:32ch}
+
+/* Tráiler con sonido */
+.sound-btn{margin-top:26px;display:inline-flex;align-items:center;gap:10px;background:rgba(244,241,236,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(244,241,236,.25);color:var(--fg);padding:13px 20px;border-radius:999px;cursor:pointer;font-size:12px;transition:background .25s,border-color .25s}
+.sound-btn:hover{background:rgba(244,241,236,.2);border-color:rgba(244,241,236,.5)}
+.sound-btn .tri{color:var(--rec);font-size:11px}
+.hero::after,.grain,.hero-in{transition:opacity .6s}
+.hero.watching::after{opacity:0}
+.hero.watching,.hero.watching .hero-bg{background:#000}
+.hero.watching .grain{opacity:0}
+.hero.watching .hero-in{opacity:0;pointer-events:none}
+.hero-ctrl{position:absolute;z-index:3;right:var(--pad);bottom:clamp(24px,4vh,40px);display:flex;gap:10px;opacity:0;pointer-events:none;transition:opacity .4s}
+.hero.watching .hero-ctrl{opacity:1;pointer-events:auto}
+.hero-ctrl button{background:rgba(12,12,12,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(244,241,236,.2);color:var(--fg);padding:10px 16px;border-radius:999px;cursor:pointer;font-size:11px}
+.hero-ctrl button:hover{border-color:rgba(244,241,236,.5)}
+.nav.hide{opacity:0;pointer-events:none}
+.nav{transition:background .3s,border-color .3s,opacity .4s}
 
 /* ---------- Cifras ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--max);margin:0 auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -174,6 +191,9 @@ footer{max-width:var(--max);margin:clamp(90px,12vw,150px) auto 0;padding:clamp(4
   .services p{grid-column:2}
 }
 @media (max-width:640px){
+  .hero.watching .hero-bg img,.hero.watching .hero-bg video{object-fit:contain;object-position:50% 50%}
+  .hero-ctrl{left:var(--pad);right:var(--pad);justify-content:center}
+  .links a[href="#trabajos"],.links a[href="#sobre"]{display:none}
   .hero-side{display:none}
   .grid{grid-template-columns:1fr}
   .row{grid-template-columns:1fr}

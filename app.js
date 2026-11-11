@@ -25,6 +25,7 @@
       f_date: "Fecha aproximada", f_date_ph: "Ej. finales de enero",
       f_idea: "Idea, canción y referencias", f_idea_ph: "Enlace a la canción, la idea, referencias visuales…",
       f_send: "Enviar brief", close: "Cerrar",
+      watch_sound: "Ver tráiler con sonido", mute: "Silenciar", unmute: "Activar sonido", exit: "Salir",
       empty: "Hueco para videoclip", empty_t: "Título", empty_a: "Artista", watch: "▶ Ver vídeo", all: "Todos",
       err_fields: "Revisa los campos marcados", sending: "Enviando…", ok: "Recibido. Te escribo en 24–48 h.", err_send: "No se pudo enviar. Escríbeme a",
     },
@@ -42,6 +43,7 @@
       f_date: "Approx. date", f_date_ph: "E.g. late January",
       f_idea: "Idea, track and references", f_idea_ph: "Link to the track, the idea, visual references…",
       f_send: "Send brief", close: "Close",
+      watch_sound: "Watch trailer with sound", mute: "Mute", unmute: "Unmute", exit: "Exit",
       empty: "Music video slot", empty_t: "Title", empty_a: "Artist", watch: "▶ Watch", all: "All",
       err_fields: "Check the highlighted fields", sending: "Sending…", ok: "Received. I'll get back to you within 24–48 h.", err_send: "Couldn't send it. Email me at",
     },
@@ -73,11 +75,43 @@
   // ---------- Portada ----------
   if (P.nombreReal) $("#realName").textContent = P.nombreReal;
   if (P.usuario) { const h = $("#handle"); h.textContent = "@" + P.usuario; h.href = "https://instagram.com/" + P.usuario; }
-  if (P.fotoPortada && P.fotoPortada !== "img/portada.webp") {
+  if (P.fotoPortada && P.fotoPortada !== "img/trailer-poster.webp") {
     const im = $("#heroImg"); im.removeAttribute("srcset"); im.src = P.fotoPortada;
   }
+  // ---------- Vídeo de portada ----------
+  const hero = $("#top"), nav = $("#nav");
+  let hv = null;
   if (P.videoPortada) {
-    $("#heroBg").insertAdjacentHTML("beforeend", '<video autoplay muted loop playsinline src="' + esc(P.videoPortada) + '"></video>');
+    const small = window.matchMedia("(max-width: 900px)").matches || (navigator.connection && navigator.connection.saveData);
+    const src = small && P.videoPortadaMovil ? P.videoPortadaMovil : P.videoPortada;
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    hv = document.createElement("video");
+    hv.muted = true; hv.loop = true; hv.playsInline = true; hv.preload = "auto";
+    hv.setAttribute("playsinline", ""); hv.setAttribute("muted", "");
+    hv.src = src;
+    hv.addEventListener("playing", () => hv.classList.add("ready"));
+    $("#heroBg").appendChild(hv);
+    if (!still) hv.play().catch(() => {});
+    $("#soundBtn").hidden = false;
+    const enter = () => {
+      hero.classList.add("watching"); nav.classList.add("hide");
+      hv.loop = false; hv.muted = false; hv.currentTime = 0; hv.play().catch(() => {});
+      $("#muteBtn").textContent = t("mute");
+    };
+    const exit = () => {
+      hero.classList.remove("watching"); nav.classList.remove("hide");
+      hv.muted = true; hv.loop = true; hv.play().catch(() => {});
+    };
+    $("#soundBtn").addEventListener("click", enter);
+    $("#exitBtn").addEventListener("click", exit);
+    $("#muteBtn").addEventListener("click", () => { hv.muted = !hv.muted; $("#muteBtn").textContent = t(hv.muted ? "unmute" : "mute"); });
+    hv.addEventListener("ended", exit);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && hero.classList.contains("watching")) exit(); });
+    // Pausar cuando no se ve (ahorra batería); si estaba con sonido, salir del modo tráiler
+    new IntersectionObserver(([en]) => {
+      if (en.isIntersecting) { if (!still || hero.classList.contains("watching")) hv.play().catch(() => {}); }
+      else { if (hero.classList.contains("watching")) exit(); hv.pause(); }
+    }, { threshold: 0.25 }).observe(hero);
   }
   const tc = $("#tc"), t0 = performance.now();
   const pad = (n) => String(n).padStart(2, "0");
@@ -209,7 +243,6 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && lb.classList.contains("open")) closeLB(); });
 
   // ---------- Navegación ----------
-  const nav = $("#nav");
   const onScroll = () => nav.classList.toggle("solid", window.scrollY > 40);
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
