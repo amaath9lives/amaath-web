@@ -35,13 +35,13 @@ const PERFIL = {
 const SOBRE_MI = {
   es: [
     "Empecé en 2018 con una cámara y sin saber nada. Desde entonces he dirigido más de 100 videoclips para la escena urbana.",
-    "Autodidacta. La dirección, la edición y el color pasan por las mismas manos, así que lo que se imagina en el guion es lo que llega a la pantalla.",
-    "Produzco a través de NINELIVES.",
+    "Autodidacta. Pasé de ser filmmaker con una cámara a dirigir proyectos audiovisuales de principio a fin.",
+    "La edición y el color los firmo como NINELIVES, mi productora y estudio de postproducción. Así, lo que se imagina en el guion es lo que llega a la pantalla.",
   ],
   en: [
     "I started in 2018 with a camera and no idea what I was doing. Since then I've directed 100+ music videos for the urban scene.",
-    "Self-taught. Directing, editing and color grading go through the same hands, so what's imagined in the script is what ends up on screen.",
-    "I produce through NINELIVES.",
+    "Self-taught. I went from filmmaker with a camera to directing audiovisual projects from start to finish.",
+    "Editing and color are signed as NINELIVES, my production company and post-production studio. That way, what's imagined in the script is what ends up on screen.",
   ],
 };
 
@@ -51,7 +51,7 @@ const SOBRE_MI = {
 const ARTISTAS = [
   "Hard GZ", "Nikone", "Miranda", "Grind", "Nadal015", "Lia Kali", "Denom",
   "Raul Clyde", "Arce", "Al Safir", "Sosad", "Fernandocosta", "Omar Montes", "Zeballos", "Mayo 214",
-  "Fyahbwoy", "Sofia Gabanna", "Anier", "Jado PVG",
+  "Fyahbwoy", "Sofia Gabanna",
 ];
 
 /* ---------- TUS VIDEOCLIPS ----------

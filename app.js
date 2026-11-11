@@ -100,12 +100,14 @@
     $("#soundBtn").hidden = false;
     const enter = () => {
       hero.classList.add("watching"); nav.classList.add("hide");
+      const bg = $("#heroBg"), hi = $(".hero-in"); bg.style.clipPath = bg.style.transform = hi.style.transform = hi.style.opacity = "";
       hv.loop = false; hv.muted = false; hv.currentTime = 0; hv.play().catch(() => {});
       $("#muteBtn").textContent = t("mute");
     };
     const exit = () => {
       hero.classList.remove("watching"); nav.classList.remove("hide");
       hv.muted = true; hv.loop = true; hv.play().catch(() => {});
+      if (typeof fx === "function") fx();
     };
     $("#soundBtn").addEventListener("click", enter);
     $("#exitBtn").addEventListener("click", exit);
@@ -222,6 +224,49 @@
     });
   }
 
+  const MF = {
+    es: "*Amaath* es un director de videoclips de Madrid. Dirección, edición y color bajo una misma mirada, para artistas de la escena urbana.",
+    en: "*Amaath* is a music video director from Madrid. Directing, editing and color under one vision, for artists in the urban scene.",
+  };
+  function renderManifest() {
+    $("#mf").innerHTML = MF[L].split(" ").map((w) => w.startsWith("*") ? '<span class="w acc">' + esc(w.replace(/\*/g, "")) + "</span>" : '<span class="w">' + esc(w) + "</span>").join(" ");
+    fx();
+  }
+
+  // ---------- Animaciones con el scroll ----------
+  const rvObs = new IntersectionObserver((ens) => ens.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); rvObs.unobserve(en.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  function reveal(els, step) { els.forEach((el, i) => { if (el.classList.contains("in")) return; el.classList.add("rv"); el.style.setProperty("--d", ((i % 3) * (step || 0.08)) + "s"); rvObs.observe(el); }); }
+  let ticking = false;
+  function fx() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const vh = window.innerHeight;
+      // Portada: el vídeo se recorta y se aleja al bajar
+      if (!hero.classList.contains("watching")) {
+        const r = hero.getBoundingClientRect();
+        const k = Math.min(Math.max(-r.top / r.height, 0), 1);
+        const bg = $("#heroBg");
+        bg.style.clipPath = "inset(" + (k * 9) + "% " + (k * 7) + "% " + (k * 2) + "% " + (k * 7) + "% round " + (k * 28) + "px)";
+        bg.style.transform = "scale(" + (1 - k * 0.04) + ") translateY(" + (k * 12) + "%)";
+        const hi = $(".hero-in");
+        hi.style.transform = k ? "translateY(" + (-k * 60) + "px)" : "";
+        hi.style.opacity = k ? String(Math.max(1 - k * 1.6, 0)) : "";
+      }
+      // Frase: las palabras se encienden según avanzas
+      const ws = document.querySelectorAll("#mf .w");
+      if (ws.length) {
+        const r = $("#mf").getBoundingClientRect();
+        const start = vh * 0.85, end = vh * 0.35;
+        const k = Math.min(Math.max((start - r.top) / (start - end + r.height * 0.6), 0), 1);
+        const n = Math.round(k * ws.length);
+        ws.forEach((w, i) => w.classList.toggle("on", i < n));
+      }
+    });
+  }
+  window.addEventListener("scroll", fx, { passive: true });
+  window.addEventListener("resize", fx);
+
   function apply() {
     document.documentElement.lang = L;
     document.querySelectorAll("[data-i]").forEach((el) => { el.textContent = t(el.dataset.i); });
@@ -229,7 +274,11 @@
     document.querySelectorAll("#lang [data-l]").forEach((s) => s.classList.toggle("on", s.dataset.l === L));
     $("#heroFrase").textContent = loc(P.frase);
     $("#heroCap").textContent = P.videoPortada ? loc(P.videoTexto) : "";
-    renderStats(); renderGrid(); renderArtists(); renderAbout(); numberSections();
+    renderStats(); renderGrid(); renderArtists(); renderAbout(); numberSections(); renderManifest();
+    reveal([...document.querySelectorAll("#grid .card")], 0.1);
+    reveal([...document.querySelectorAll(".stat")], 0.08);
+    reveal([...document.querySelectorAll(".services li")], 0.1);
+    reveal([...document.querySelectorAll(".sec-head, #artistList, #aboutText, .portrait-wrap, #brief")], 0);
   }
   $("#lang").addEventListener("click", () => {
     L = L === "es" ? "en" : "es";
