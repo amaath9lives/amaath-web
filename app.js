@@ -85,14 +85,18 @@
   if (P.videoPortada) {
     const small = window.matchMedia("(max-width: 900px)").matches || (navigator.connection && navigator.connection.saveData);
     const src = small && P.videoPortadaMovil ? P.videoPortadaMovil : P.videoPortada;
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     hv = document.createElement("video");
-    hv.muted = true; hv.loop = true; hv.playsInline = true; hv.preload = "auto";
-    hv.setAttribute("playsinline", ""); hv.setAttribute("muted", "");
+    hv.muted = true; hv.defaultMuted = true; hv.loop = true; hv.playsInline = true; hv.autoplay = true; hv.preload = "auto";
+    hv.setAttribute("playsinline", ""); hv.setAttribute("webkit-playsinline", ""); hv.setAttribute("muted", ""); hv.setAttribute("autoplay", "");
     hv.src = src;
     hv.addEventListener("playing", () => hv.classList.add("ready"));
     $("#heroBg").appendChild(hv);
-    if (!still) hv.play().catch(() => {});
+    // Siempre en movimiento (sin sonido). Si el navegador lo bloquea (ahorro de batería, ajustes),
+    // arranca en cuanto el visitante toca, hace clic o pulsa una tecla en la página.
+    const kick = () => { if (hv.paused) hv.play().catch(() => {}); };
+    kick();
+    hv.addEventListener("canplay", kick, { once: true });
+    ["pointerdown", "touchstart", "keydown", "wheel"].forEach((ev) => window.addEventListener(ev, kick, { once: true, passive: true }));
     $("#soundBtn").hidden = false;
     const enter = () => {
       hero.classList.add("watching"); nav.classList.add("hide");
@@ -110,7 +114,7 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && hero.classList.contains("watching")) exit(); });
     // Pausar cuando no se ve (ahorra batería); si estaba con sonido, salir del modo tráiler
     new IntersectionObserver(([en]) => {
-      if (en.isIntersecting) { if (!still || hero.classList.contains("watching")) hv.play().catch(() => {}); }
+      if (en.isIntersecting) hv.play().catch(() => {});
       else { if (hero.classList.contains("watching")) exit(); hv.pause(); }
     }, { threshold: 0.25 }).observe(hero);
   }

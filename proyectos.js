@@ -50,8 +50,8 @@ const SOBRE_MI = {
    Si la lista está vacía, la sección no aparece. */
 const ARTISTAS = [
   "Hard GZ", "Nikone", "Miranda", "Grind", "Nadal015", "Lia Kali", "Denom",
-  "Raul Clyde", "Arce", "Al Safir", "Sosad", "Fernandocosta", "Zeballos", "Mayo 214",
-  "Fyahbwoy", "Sofia Gabanna", "Blake", "Makro", "Anier", "Jado PVG", "PGJ",
+  "Raul Clyde", "Arce", "Al Safir", "Sosad", "Fernandocosta", "Omar Montes", "Zeballos", "Mayo 214",
+  "Fyahbwoy", "Sofia Gabanna", "Anier", "Jado PVG",
 ];
 
 /* ---------- TUS VIDEOCLIPS ----------
@@ -70,8 +70,8 @@ const PROYECTOS = [
   { artista: "Miranda & Hard GZ", titulo: "Volver", anio: "", visitas: "13M", video: "https://youtu.be/SAn9ya_nKPc", portada: "", loop: "" },
   { artista: "Nadal015", titulo: "Street Shark", anio: "", visitas: "12M", video: "https://youtu.be/G80kKs0ait4", portada: "", loop: "" },
   { artista: "Grind", titulo: "Goat", anio: "", visitas: "5,1M", video: "https://youtu.be/GoN7N9FnH1c", portada: "", loop: "" },
-  { artista: "Sofia Gabanna & Hard GZ", titulo: "Vivimos Deprisa", anio: "", visitas: "4,4M", video: "https://youtu.be/-PkNgMNnr2I", portada: "", loop: "" },
-  { artista: "Miranda & Nadal015", titulo: "Demons", anio: "", visitas: "4,4M", video: "https://youtu.be/Yzz6zoiN8NM", portada: "", loop: "" },
+  { artista: "Arce", titulo: "Rebelde", anio: "", visitas: "315K", video: "https://youtu.be/xbvaDdxUoeY", portada: "", loop: "" },
+  { artista: "Arce ft. Omar Montes", titulo: "Septiembre", anio: "", visitas: "125K", video: "https://youtu.be/TaKXVIiDns4", portada: "", loop: "" },
   { artista: "Arce ft. Al Safir", titulo: "Nékora", anio: "", visitas: "878K", video: "https://youtu.be/Px05StgxA5I", portada: "", loop: "" },
   { artista: "Miranda", titulo: "Destello", anio: "", visitas: "3,7M", video: "https://youtu.be/j2-u328M9CA", portada: "", loop: "" },
   { artista: "Hard GZ & Denom ft. Lia Kali", titulo: "Ayer", anio: "", visitas: "2,7M", video: "https://youtu.be/E_czYtKq8PU", portada: "", loop: "" },

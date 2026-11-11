@@ -58,10 +58,7 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .lead{margin-top:8px;color:var(--mute)!important;font-size:clamp(17px,1.6vw,22px);color:rgba(244,241,236,.85);max-width:32ch}
 
 /* Tráiler con sonido */
-.hero-cta{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
-.hero-cap{color:rgba(244,241,236,.75);font-size:11px}
-.hero-cap:empty{display:none}
-.sound-btn{display:inline-flex;align-items:center;gap:10px;background:rgba(244,241,236,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(244,241,236,.25);color:var(--fg);padding:13px 20px;border-radius:999px;cursor:pointer;font-size:12px;transition:background .25s,border-color .25s}
+.sound-btn{margin-top:24px;display:inline-flex;align-items:center;gap:10px;background:rgba(244,241,236,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(244,241,236,.25);color:var(--fg);padding:13px 20px;border-radius:999px;cursor:pointer;font-size:12px;transition:background .25s,border-color .25s}
 .sound-btn:hover{background:rgba(244,241,236,.2);border-color:rgba(244,241,236,.5)}
 .sound-btn .tri{color:var(--rec);font-size:11px}
 .hero::after,.grain,.hero-in{transition:opacity .6s}
@@ -69,6 +66,9 @@ h1,h2,h3,.big,.brand{font-family:Geist,Inter,sans-serif}
 .hero.watching,.hero.watching .hero-bg{background:#000}
 .hero.watching .grain{opacity:0}
 .hero.watching .hero-in{opacity:0;pointer-events:none}
+.watch-cap{position:absolute;z-index:3;left:var(--pad);top:clamp(20px,4vh,36px);margin:0;padding:9px 14px;border-radius:999px;background:rgba(12,12,12,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(244,241,236,.18);color:var(--fg);font-size:11px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .5s .2s,transform .5s .2s}
+.hero.watching .watch-cap{opacity:1;transform:none}
+.watch-cap:empty{display:none}
 .hero-ctrl{position:absolute;z-index:3;right:var(--pad);bottom:clamp(24px,4vh,40px);display:flex;gap:10px;opacity:0;pointer-events:none;transition:opacity .4s}
 .hero.watching .hero-ctrl{opacity:1;pointer-events:auto}
 .hero-ctrl button{background:rgba(12,12,12,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(244,241,236,.2);color:var(--fg);padding:10px 16px;border-radius:999px;cursor:pointer;font-size:11px}
